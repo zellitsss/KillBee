@@ -11,16 +11,18 @@ const {ccclass, property} = cc._decorator;
 export default class Player extends cc.Component {
 
     @property('number')
-    speed: number = 500;
+    force: number = 200;
 
-    // onLoad () {}
+    onLoad () {
+        cc.director.getPhysicsManager().enabled = true;
+    }
 
     start () {
-
+        let force: cc.Vec2 = new cc.Vec2(0, this.force);
+        this.node.getComponent(cc.RigidBody).applyLinearImpulse(force, this.node.getPosition(), true);
     }
 
     update (dt) {
-        let direction: cc.Vec2 = new cc.Vec2(0, 1);
-        this.node.setPosition(this.node.getPosition().add(direction.mul(dt * this.speed)));
+        
     }
 }

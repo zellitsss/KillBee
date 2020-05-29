@@ -61,6 +61,9 @@ export default class Player extends cc.Component {
             }
             bullet.setPosition(this.node.getPosition().add(this.shootingOffset));
             bullet.parent = this.node.parent;
+
+            
+
             this.shootingCd = this.shootingRate;
         }
     }

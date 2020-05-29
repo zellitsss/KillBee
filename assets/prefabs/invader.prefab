@@ -92,7 +92,7 @@
         "__uuid__": "d00fd887-b5b6-4564-a08c-70c85c5091ab"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": ""
   },
   {
@@ -135,7 +135,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "5946ffb7-f5a0-46f0-8ca5-4867709f6f33"
     },
     "fileId": "23oPkqPGJMmIC9ka5WhofH",
     "sync": false

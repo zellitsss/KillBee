@@ -280,8 +280,8 @@
         0,
         0,
         1,
-        2,
-        2,
+        1.5,
+        1.5,
         1
       ]
     },
@@ -388,7 +388,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        100,
+        50,
         0,
         0,
         0,
@@ -420,6 +420,14 @@
       "__id__": 8
     },
     "_enabled": true,
+    "gridCollumn": 5,
+    "gridRow": 4,
+    "gridPadding": 60,
+    "enemyPrefab": {
+      "__uuid__": "5946ffb7-f5a0-46f0-8ca5-4867709f6f33"
+    },
+    "swingDistance": 200,
+    "swingSpeed": 100,
     "_id": "2e+JS38cNNYpaYfjSshQVi"
   },
   {
