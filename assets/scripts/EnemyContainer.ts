@@ -8,10 +8,19 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Player extends cc.Component {
+export default class EnemyContainer extends cc.Component {
 
     @property('number')
-    speed: number = 500;
+    gridCollumn: number = 0;
+    
+    @property('number')
+    gridRow: number = 0;
+
+    @property('number')
+    gridPadding: number = 0;
+    
+    @property(cc.Prefab)
+    enemyPrefab: cc.Prefab = null;
 
     // onLoad () {}
 
@@ -19,8 +28,5 @@ export default class Player extends cc.Component {
 
     }
 
-    update (dt) {
-        let direction: cc.Vec2 = new cc.Vec2(0, 1);
-        this.node.setPosition(this.node.getPosition().add(direction.mul(dt * this.speed)));
-    }
+    // update (dt) {}
 }
