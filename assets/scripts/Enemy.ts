@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import EnemyBullet from "./EnemyBullet";
+import BulletContainer from "./BulletContainer";
 
 const {ccclass, property} = cc._decorator;
 
@@ -26,9 +27,9 @@ export default class Enemy extends cc.Component {
     }
 
     Shoot(playerPosition: cc.Vec2) {
-        let bullet: cc.Node = cc.instantiate(this.bulletPrefab);
-
         let bulletContainer: cc.Node = cc.find('Canvas/BulletContainer');
+
+        let bullet: cc.Node = bulletContainer.getComponent(BulletContainer).GetEnemyBullet();
 
         let direction: cc.Vec2 = playerPosition.sub(this.node.parent.convertToWorldSpaceAR(this.node.getPosition()));
         direction.normalizeSelf();
@@ -48,7 +49,7 @@ export default class Enemy extends cc.Component {
         let canvas: cc.Node = cc.find('Canvas');
         explode.setPosition(canvas.convertToNodeSpaceAR(this.node.parent.convertToWorldSpaceAR(this.node.getPosition())));
         explode.parent = canvas;
-        this.node.destroy();
+        this.node.destroy();        
     }
 
 }

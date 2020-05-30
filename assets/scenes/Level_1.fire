@@ -87,13 +87,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 23
-      },
-      {
         "__id__": 24
       },
       {
         "__id__": 25
+      },
+      {
+        "__id__": 26
       }
     ],
     "_prefab": null,
@@ -1078,7 +1078,11 @@
     },
     "_children": [],
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 23
+      }
+    ],
     "_prefab": null,
     "_opacity": 255,
     "_color": {
@@ -1126,6 +1130,22 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "_id": "09cAw8GZ1L7bYCcuwfSHZe"
+  },
+  {
+    "__type__": "70f01t+YYpJyKeUpeU52DpD",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 22
+    },
+    "_enabled": true,
+    "playerBullet": {
+      "__uuid__": "eb53bdd5-78ab-4485-81f6-e59f5bead026"
+    },
+    "enemyBullet": {
+      "__uuid__": "4a4dae16-6443-44fa-beac-0fabda5f0b80"
+    },
+    "_id": "69yoUy7XRKvr2lyAA8JlBp"
   },
   {
     "__type__": "cc.Canvas",

@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import BulletContainer from "./BulletContainer";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -25,6 +27,6 @@ export default class EnemyBullet extends cc.Component {
     }
 
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
-        this.node.destroy();
+        cc.find('Canvas/BulletContainer').getComponent(BulletContainer).PutEnemyBullet(this.node);
     }
 }

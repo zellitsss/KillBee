@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import BulletContainer from "./BulletContainer";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -56,15 +58,10 @@ export default class Player extends cc.Component {
 
     Shoot() {
         if (this.shootingCd <= 0) {
-            let bullet: cc.Node = null;
-            if (this.bulletPool.size() > 0) {
-                bullet = this.bulletPool.get();
-            } else {
-                bullet = cc.instantiate(this.bulletPrefab);
-                this.bulletPool.put(bullet);
-            }
-            bullet.setPosition(this.node.getPosition().add(this.shootingOffset));
             let bulletContainer: cc.Node = cc.find('Canvas/BulletContainer');
+            let bullet: cc.Node = bulletContainer.getComponent(BulletContainer).GetPlayerBullet();
+            
+            bullet.setPosition(this.node.getPosition().add(this.shootingOffset));
             bullet.parent = bulletContainer;
 
             this.shootingCd = this.shootingRate;
