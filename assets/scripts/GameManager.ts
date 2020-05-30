@@ -16,8 +16,15 @@ export default class GameManager extends cc.Component {
     @property(cc.Label)
     lifeText: cc.Label = null;
 
-    score: number = 0;
+    @property(cc.Label)
+    timer: cc.Label = null;
 
+    // timeout in second, 0 for unlimited time
+    @property('number')
+    timeOut: number = 0;
+
+    score: number = 0;
+    countDown: number = 0;
     playerLives: number = 3;
 
     onLoad () {
@@ -38,14 +45,43 @@ export default class GameManager extends cc.Component {
         this.node.on('AllEnemiesAreDestroyed', () => {
             this.OnAllEnemiesAreDestroyed();
         })
+        this.node.on('TimeOut', () => {
+            this.GameOver();
+        });
+
+        if (this.timeOut != 0) {
+            this.countDown = this.timeOut;
+        }
     }
 
     start () {
+        if (this.timeOut > 0) {
+            this.schedule(() => {
+                this.countDown--;
+            }, 1);
+        }
     }
 
     update (dt) {
+        if (this.timeOut > 0 && this.countDown < 0) {
+            this.node.dispatchEvent(new cc.Event.EventCustom('TimeOut', false));
+        }
+
+        if (this.timeOut > 0) {
+            if (this.countDown >= 0) {
+                this.timer.string = this.countDown.toString();
+            } else {
+                this.timer.string = '0';
+            }
+        } else {
+            this.timer.string = '';
+        }
         this.scoreText.string = this.score.toString();
         this.lifeText.string = this.playerLives.toString();
+    }
+
+    lateUpdate() {
+        
     }
 
     OnEnemyIsDetroyedByBullet() {
