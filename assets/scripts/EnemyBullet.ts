@@ -8,26 +8,23 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Player extends cc.Component {
+export default class EnemyBullet extends cc.Component {
+    speed: number = 400;
 
-    @property('number')
-    speed: number = 200;
+    // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-    }
+    // onLoad () {}
 
     start () {
-        
+        this.scheduleOnce(() => {
+            this.node.destroy();
+        }, 10);
     }
 
     update (dt) {
-        let speed: cc.Vec2 = new cc.Vec2(0, this.speed);
-        this.node.setPosition(this.node.getPosition().add(speed.mul(dt)));
     }
 
-    onCollisionEnter(other: cc.Collider, self: cc.Collider) { 
-        if (other.tag == 3) {
-            this.node.active = false;
-        }
+    onCollisionEnter(other: cc.Collider, self: cc.Collider) {
+        this.node.destroy();
     }
 }

@@ -35,6 +35,9 @@ export default class Player extends cc.Component {
             let bullet = cc.instantiate(this.bulletPrefab);
             this.bulletPool.put(bullet);
         }
+
+        cc.director.getCollisionManager().enabled = true;
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
@@ -58,14 +61,15 @@ export default class Player extends cc.Component {
                 bullet = this.bulletPool.get();
             } else {
                 bullet = cc.instantiate(this.bulletPrefab);
+                this.bulletPool.put(bullet);
             }
             bullet.setPosition(this.node.getPosition().add(this.shootingOffset));
-            bullet.parent = this.node.parent;
-
-            
+            let bulletContainer: cc.Node = cc.find('Canvas/BulletContainer');
+            bullet.parent = bulletContainer;
 
             this.shootingCd = this.shootingRate;
         }
+        console.log(this.bulletPool.size())
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {
@@ -114,6 +118,14 @@ export default class Player extends cc.Component {
                 break;
             default:
                 break;
+        }
+    }
+
+    onCollisionEnter(other: cc.Collider, self: cc.Collider) {
+        if (other.tag == 3) {
+            this.node.dispatchEvent(new cc.Event.EventCustom('PlayerIsHitByEnemy', true));
+        } else if (other.tag == 4) {
+            this.node.dispatchEvent(new cc.Event.EventCustom('PlayerIsHitByBullet', true));
         }
     }
 }
