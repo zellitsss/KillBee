@@ -18,28 +18,14 @@ export default class Player extends cc.Component {
     @property('number')
     shootingRate: number = 0.5;
 
-    @property(cc.Prefab)
-    bulletPrefab: cc.Prefab = null;
-
     @property(cc.Vec2)
     shootingOffset: cc.Vec2 = new cc.Vec2(0, 0);
-
-    bulletPool: cc.NodePool = null;
 
     shootingCd: number = 0;
     horizontalMovement: number = 0;
     vertialMovement: number = 0;
 
     onLoad () {
-        this.bulletPool = new cc.NodePool();
-        let initCount = 5;
-        for (let i = 0; i < initCount; i++) {
-            let bullet = cc.instantiate(this.bulletPrefab);
-            this.bulletPool.put(bullet);
-        }
-
-        cc.director.getCollisionManager().enabled = true;
-
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }

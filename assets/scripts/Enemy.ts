@@ -14,9 +14,6 @@ const {ccclass, property} = cc._decorator;
 export default class Enemy extends cc.Component {
 
     @property(cc.Prefab)
-    bulletPrefab: cc.Prefab = null;
-
-    @property(cc.Prefab)
     explodePrefab: cc.Prefab = null;
 
     @property('number')

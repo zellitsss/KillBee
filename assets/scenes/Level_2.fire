@@ -355,9 +355,6 @@
     "_enabled": true,
     "speed": 300,
     "shootingRate": 0.5,
-    "bulletPrefab": {
-      "__uuid__": "eb53bdd5-78ab-4485-81f6-e59f5bead026"
-    },
     "shootingOffset": {
       "__type__": "cc.Vec2",
       "x": 0,

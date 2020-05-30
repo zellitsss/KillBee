@@ -21,6 +21,8 @@ export default class GameManager extends cc.Component {
     playerLives: number = 3;
 
     onLoad () {
+        cc.director.getCollisionManager().enabled = true;
+
         this.node.on('EnemyIsDetroyedByBullet', () => {
             this.OnEnemyIsDetroyedByBullet();
         });
